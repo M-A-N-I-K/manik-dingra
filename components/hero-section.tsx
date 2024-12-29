@@ -80,7 +80,6 @@ const HeroSection = () => {
 
     return (
         <motion.div
-            id="home"
             ref={containerRef}
             className="relative min-h-screen bg-gray-900 overflow-hidden"
             initial={{ opacity: 0 }}

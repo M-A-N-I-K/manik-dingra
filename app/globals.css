@@ -14,24 +14,38 @@
   }
 }
 
+::-moz-selection {
+  color: #ebf8f1;
+  background: #ce53e0;
+}
+::selection {
+  color: #ebf8f1;
+  background: #ce53e0;
+}
+
 body {
   @apply bg-gray-900;
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
 html {
   scroll-behavior: smooth;
 }
+
 html.lenis {
   height: auto;
 }
+
 .lenis.lenis-smooth {
   scroll-behavior: auto;
 }
+
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
 }
+
 .lenis.lenis-stopped {
   overflow: hidden;
 }

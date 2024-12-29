@@ -6,6 +6,7 @@ import HeroSection from './hero-section';
 import AboutSection from './about-section';
 import ExperienceSection from './experience-section';
 import ProjectsSection from './projects-section';
+import SkillsSection from './skills-section';
 
 const MainContainer = () => {
     const containerRef = useRef(null);
@@ -13,6 +14,7 @@ const MainContainer = () => {
     const experienceRef = useRef(null);
     const aboutRef = useRef(null);
     const projectsRef = useRef(null);
+    const skillRef = useRef(null);
 
     // Main scroll progress
     const { scrollYProgress } = useScroll({
@@ -68,20 +70,20 @@ const MainContainer = () => {
         [0.8, 1, 1, 0.8]
     );
 
-    // Projects section animations
-    const { scrollYProgress: projectsProgress } = useScroll({
-        target: projectsRef,
+    // Skill section animations
+    const { scrollYProgress: skillProgress } = useScroll({
+        target: skillRef,
         offset: ["start end", "end start"]
     });
 
-    const projectsOpacity = useTransform(
-        projectsProgress,
+    const skillOpacity = useTransform(
+        skillProgress,
         [0, 0.1, 0.8, 1],
         [0, 1, 1, 0]
     );
 
-    const projectsScale = useTransform(
-        projectsProgress,
+    const skillScale = useTransform(
+        skillProgress,
         [0, 0.1, 0.8, 1],
         [0.8, 1, 1, 0.8]
     );
@@ -119,6 +121,7 @@ const MainContainer = () => {
 
             {/* Hero Section */}
             <motion.section
+                id="home"
                 ref={heroRef}
                 className="sticky top-0 h-screen"
                 style={{
@@ -142,13 +145,25 @@ const MainContainer = () => {
                 <ExperienceSection />
             </motion.section>
 
+            <motion.section
+                ref={skillRef}
+                className="sticky top-0 z-20 min-h-screen"
+                style={{
+                    opacity: skillOpacity,
+                    scale: skillScale
+                }}
+            >
+                <SkillsSection />
+            </motion.section>
+
             {/* Projects Section */}
             <motion.section
+                id="projects"
                 ref={projectsRef}
                 className="relative z-20 min-h-screen"
                 style={{
-                    opacity: projectsOpacity,
-                    scale: projectsScale
+                    opacity: skillOpacity,
+                    scale: skillScale
                 }}
             >
                 <ProjectsSection />

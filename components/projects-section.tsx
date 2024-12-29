@@ -85,7 +85,6 @@ const ProjectsSection = () => {
 
     return (
         <motion.section
-            id="projects"
             ref={sectionRef}
             className="relative py-20 bg-gray-900 overflow-hidden"
             initial="hidden"
