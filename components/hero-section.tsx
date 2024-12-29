@@ -169,7 +169,7 @@ const HeroSection = () => {
                     </motion.div>
 
                     {/* CTA Button */}
-                    <motion.button
+                    <motion.a
                         className="mt-8 px-8 py-3 bg-violet-600 text-white rounded-full font-semibold 
                         hover:bg-violet-700 transition-colors relative overflow-hidden group"
                         initial={{ opacity: 0 }}
@@ -177,6 +177,7 @@ const HeroSection = () => {
                         transition={{ delay: 2.5 }}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
+                        href="#projects"
                     >
                         <span className="relative z-10">View My Projects</span>
                         <motion.div
@@ -185,7 +186,7 @@ const HeroSection = () => {
                             whileHover={{ scale: 1 }}
                             transition={{ duration: 0.3 }}
                         />
-                    </motion.button>
+                    </motion.a>
                 </motion.div>
             </motion.div>
 
