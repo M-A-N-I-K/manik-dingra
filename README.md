@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Modern Portfolio Website
 
-## Getting Started
+A dynamic portfolio website built with Next.js 15, featuring smooth animations and a modern design aesthetic.
 
-First, run the development server:
+## Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 15 (App Router)
+- TypeScript
+- Tailwind CSS
+- Motion
+- Lenis Smooth Scroll
+
+## Project Structure
+
+```
+└── M-A-N-I-K-manik-dingra/
+    ├── components/
+    │   ├── project-card.tsx
+    │   ├── navbar.tsx
+    │   ├── coming-soon.tsx
+    │   ├── projects-section.tsx
+    │   ├── hero-section.tsx
+    │   ├── main-container.tsx
+    │   ├── skills-section.tsx
+    │   ├── experience-section.tsx
+    │   ├── footer.tsx
+    │   └── about-section.tsx
+    ├── public/
+    │   └── projects/
+    ├── next.config.ts
+    ├── lib/
+    │   └── lenis-scroll.tsx
+    ├── package.json
+    ├── postcss.config.mjs
+    ├── eslint.config.mjs
+    ├── tailwind.config.ts
+    ├── tsconfig.json
+    ├── README.md
+    └── app/
+        ├── page.tsx
+        ├── globals.css
+        └── layout.tsx
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Components
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Main Sections
+- `main-container.tsx`: Root container with scroll animations
+- `hero-section.tsx`: Landing section with 3D effects
+- `projects-section.tsx`: Interactive project showcase
+- `skills-section.tsx`: Dynamic skills grid with filtering
+- `experience-section.tsx`: Work experience timeline
+- `about-section.tsx`: Personal introduction
+- `footer.tsx`: Contact information and links
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Features
+- Smooth scroll implementation using Lenis
+- 3D hover effects and transitions
+- Dynamic project cards with animations
+- Interactive skills filtering
+- Responsive design for all devices
 
-## Learn More
+## Setup
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Clone the repository 
+https://github.com/M-A-N-I-K/manik-dingra
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Change directory
+cd manik-dingra
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Install dependencies
+npm install
 
-## Deploy on Vercel
+# Run development server
+npm run dev
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# Build for production
+npm run build
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Configuration
+
+Key configuration files:
+- `next.config.ts`: Next.js configuration
+- `tailwind.config.ts`: Theme and styling customization
+- `tsconfig.json`: TypeScript settings
+- `lib/lenis-scroll.tsx`: Smooth scroll configuration
+
+## License
+
+MIT License
+
+## Author
+
+[Manik Dingra]
+- GitHub: [@manikdingra](https://github.com/M-A-N-I-K)
