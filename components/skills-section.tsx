@@ -116,7 +116,7 @@ const SkillsSection = () => {
                 >
                     <div className="relative inline-block">
                         <motion.h2
-                            className="text-4xl md:text-5xl font-bold"
+                            className="text-2xl md:text-5xl font-bold"
                         >
                             {"Skills & Technologies".split("").map((letter, i) => (
                                 <motion.span

@@ -88,6 +88,23 @@ const MainContainer = () => {
         [0.8, 1, 1, 0.8]
     );
 
+    const { scrollYProgress: projectsProgress } = useScroll({
+        target: projectsRef,
+        offset: ["start end", "end start"]
+    });
+
+    const projectsOpacity = useTransform(
+        projectsProgress,
+        [0, 0.1, 0.8, 1],
+        [0, 1, 1, 0]
+    );
+
+    const projectsScale = useTransform(
+        projectsProgress,
+        [0, 0.1, 0.8, 1],
+        [0.8, 1, 1, 0.8]
+    );
+
     // Background gradient animation
     const gradientProgress = useTransform(
         smoothProgress,
@@ -123,7 +140,7 @@ const MainContainer = () => {
             <motion.section
                 id="home"
                 ref={heroRef}
-                className="sticky top-0 h-screen"
+                className="relative md:sticky top-0 h-screen"
                 style={{
                     scale: heroScale,
                     opacity: heroOpacity,
@@ -136,7 +153,7 @@ const MainContainer = () => {
             {/* Experience Section */}
             <motion.section
                 ref={experienceRef}
-                className="sticky top-0 z-10 min-h-screen"
+                className="relative md:sticky top-0 z-10 min-h-screen"
                 style={{
                     opacity: experienceOpacity,
                     scale: experienceScale
@@ -147,7 +164,7 @@ const MainContainer = () => {
 
             <motion.section
                 ref={skillRef}
-                className="sticky top-0 z-20 min-h-screen"
+                className="relative md:sticky top-0 z-20 min-h-screen"
                 style={{
                     opacity: skillOpacity,
                     scale: skillScale
@@ -162,8 +179,8 @@ const MainContainer = () => {
                 ref={projectsRef}
                 className="relative z-20 min-h-screen"
                 style={{
-                    opacity: skillOpacity,
-                    scale: skillScale
+                    opacity: projectsOpacity,
+                    scale: projectsScale
                 }}
             >
                 <ProjectsSection />
