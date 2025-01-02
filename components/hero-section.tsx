@@ -135,7 +135,7 @@ const HeroSection = () => {
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1.5 }}
                     >
-                        <GlitchText text="Full Stack Developer" delay={0} />
+                        <GlitchText text="Full Stack Developer" />
                     </motion.div>
 
                     {/* Location */}
