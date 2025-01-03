@@ -60,15 +60,15 @@ const ProjectsSection = () => {
         //     status: "completed"
         // },
         {
-            title: "Notion Clone",
+            title: "Mind Note",
             description: "Feature-rich document management system with real-time collaboration capabilities, incorporating authentication and optimized query responses for enhanced performance.",
-            image: "/projects/notion.png",
+            image: "/projects/mindnote.png",
             technologies: ["Next.js", "TypeScript", "TailwindCSS", "Shadcn UI", "Clerk", "Convex", "Docker"],
             links: [
                 {
                     icon: "📝",
                     label: "Live Demo",
-                    url: "https://notion-clone-beta-one.vercel.app"
+                    url: "https://mind-note-beta.vercel.app/"
                 }
             ],
             status: "completed"
