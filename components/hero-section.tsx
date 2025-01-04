@@ -146,7 +146,7 @@ const HeroSection = () => {
                         transition={{ delay: 1.8 }}
                     >
                         <MapPin className="w-4 h-4" />
-                        <span>Delhi, India</span>
+                        <span>Jammu, India</span>
                     </motion.div>
 
                     {/* Description Card */}
@@ -161,9 +161,7 @@ const HeroSection = () => {
                         }}
                     >
                         <p className="text-gray-300 text-left">
-                            Currently crafting scalable web solutions at Tuna Software Solutions.
-                            Specializing in Next.js, AWS, and modern web technologies. With a strong foundation in both frontend and backend development,
-                            I focus on building efficient, user-centric applications. Let&apos;s transform ideas into reality! 🚀
+                            Hey there! I&apos;m a web developer who loves turning ambitious ideas into reality. My focus? Creating blazing-fast, scalable applications using Next.js, AWS, and cutting-edge web technologies. I bring together clean frontend designs with robust backend architecture, always aiming to build solutions that make a real impact. Want to create something amazing together? Let&apos;s make it happen! 🚀
                         </p>
                     </motion.div>
 
