@@ -8,7 +8,7 @@ interface ExperienceData {
     title: string;
     company: string;
     period: string;
-    description: string;
+    description?: string;
     skills: string[];
     icon: any;
     color: string;
@@ -19,7 +19,7 @@ const experiences = [
         title: "Full Stack Developer",
         company: "Tuna Software Solutions Limited",
         period: "May 2024 - Present",
-        description: "Developing scalable web applications using Next.js and AWS infrastructure with Sanity CMS integration.",
+        // description: "Developing scalable web applications using Next.js and AWS infrastructure with Sanity CMS integration.",
         skills: ["Next.js", "AWS", "CI/CD", "Sanity CMS", "TypeScript"],
         icon: Code2,
         color: "violet"
@@ -28,7 +28,7 @@ const experiences = [
         title: "Web Developer",
         company: "Lotus Interworks",
         period: "Aug 2023 - Apr 2024",
-        description: "Streamlined deployment processes and developed SMS campaign features using modern web technologies.",
+        // description: "Streamlined deployment processes and developed SMS campaign features using modern web technologies.",
         skills: ["React", "Node.js", "Express.js", "React Native", "MySQL"],
         icon: GitBranch,
         color: "blue"
@@ -37,7 +37,7 @@ const experiences = [
         title: "Front End Developer",
         company: "ONIRIC",
         period: "Dec 2022 - Aug 2023",
-        description: "Created and maintained modular React components while optimizing application performance.",
+        // description: "Created and maintained modular React components while optimizing application performance.",
         skills: ["React", "Tailwind CSS", "TypeScript", "API Integration"],
         icon: Briefcase,
         color: "indigo"
@@ -81,7 +81,7 @@ const ExperienceCard = ({ data, index }: { data: ExperienceData, index: number }
                         <span className="text-gray-400 text-xs md:text-sm mt-1 md:mt-0">{data.period}</span>
                     </div>
 
-                    <p className="text-gray-300 mb-4 text-sm md:text-base text-center md:text-left">{data.description}</p>
+                    {/* <p className="text-gray-300 mb-4 text-sm md:text-base text-center md:text-left">{data.description}</p> */}
 
                     {/* Skills */}
                     <div className="flex flex-wrap justify-center md:justify-start gap-2">
