@@ -13,7 +13,6 @@ import {
     Layers,
     Palette,
     Sparkles,
-    LayoutGrid,
     Infinity,
     RefreshCw,
     Leaf,
@@ -125,64 +124,6 @@ const SkillsSection = () => {
         ? skills.filter(skill => skill.category === activeCategory)
         : skills;
 
-    const headingVariants = {
-        hidden: {
-            opacity: 0,
-            y: -20,
-        },
-        visible: {
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1]
-            }
-        }
-    };
-
-    const letterVariants = {
-        hidden: {
-            opacity: 0,
-            y: 20,
-        },
-        visible: (i: number) => ({
-            opacity: 1,
-            y: 0,
-            transition: {
-                duration: 0.6,
-                ease: [0.22, 1, 0.36, 1],
-                delay: i * 0.1
-            }
-        })
-    };
-
-    const skillCardVariants = {
-        hidden: {
-            opacity: 0,
-            y: 20,
-            scale: 0.8
-        },
-        visible: (i: number) => ({
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            transition: {
-                duration: 0.5,
-                delay: i * 0.05,
-                ease: [0.22, 1, 0.36, 1]
-            }
-        }),
-        exit: {
-            opacity: 0,
-            scale: 0.8,
-            y: -20,
-            transition: {
-                duration: 0.3,
-                ease: [0.22, 1, 0.36, 1]
-            }
-        }
-    };
-
     return (
         <section className="py-24 min-h-screen bg-gray-900">
             <div className="max-w-6xl mx-auto px-4">
@@ -236,7 +177,7 @@ const SkillsSection = () => {
 
                 {/* Skills Grid */}
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                    {filteredSkills.map((skill, index) => (
+                    {filteredSkills.map((skill) => (
                         <div
                             key={skill.name}
                             className="group relative"
