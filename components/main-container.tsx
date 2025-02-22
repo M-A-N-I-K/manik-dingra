@@ -140,7 +140,7 @@ const MainContainer = () => {
             <motion.section
                 id="home"
                 ref={heroRef}
-                className="relative md:sticky top-0 h-screen"
+                className="relative top-0 h-screen"
                 style={{
                     scale: heroScale,
                     opacity: heroOpacity,
@@ -153,7 +153,7 @@ const MainContainer = () => {
             {/* Experience Section */}
             <motion.section
                 ref={experienceRef}
-                className="relative md:sticky top-0 z-10 min-h-screen"
+                className="relative top-0 z-10 min-h-screen"
                 style={{
                     opacity: experienceOpacity,
                     scale: experienceScale
@@ -164,7 +164,7 @@ const MainContainer = () => {
 
             <motion.section
                 ref={skillRef}
-                className="relative md:sticky top-0 z-20 min-h-screen"
+                className="relative top-0 z-20 min-h-screen"
                 style={{
                     opacity: skillOpacity,
                     scale: skillScale
