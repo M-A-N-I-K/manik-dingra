@@ -16,7 +16,7 @@ import {
     Infinity,
     RefreshCw,
     Leaf,
-    Boxes
+    Boxes,
 } from 'lucide-react';
 
 interface Skill {
@@ -180,7 +180,7 @@ const SkillsSection = () => {
                     {filteredSkills.map((skill) => (
                         <div
                             key={skill.name}
-                            className="group relative"
+                            className="group relative cursor-grab"
                         >
                             <div className="absolute inset-0 bg-violet-500/10 rounded-xl blur-xl transition-opacity opacity-0 group-hover:opacity-100" />
                             <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-4 transition-colors hover:border-violet-500/50 hover:-translate-y-1 duration-200">
