@@ -14,6 +14,8 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const dynamic = 'force-static';
+
 export const metadata: Metadata = {
   title: "Manik Dingra | Full-stack Developer",
   description: "Full-stack software engineer specializing in building exceptional digital experiences. Explore my projects, skills, and journey in web development.",
