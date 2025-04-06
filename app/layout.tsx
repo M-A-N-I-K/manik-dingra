@@ -17,7 +17,11 @@ const geistMono = Geist_Mono({
 export const dynamic = 'force-static';
 
 export const metadata: Metadata = {
-  title: "Manik Dingra | Full-stack Developer",
+  metadataBase: new URL("https://manik-dingra.in"),
+  title: {
+    default: "Manik Dingra",
+    template: "%s | Manik Dingra",
+  },
   description: "Full-stack software engineer specializing in building exceptional digital experiences. Explore my projects, skills, and journey in web development.",
   keywords: [
     "Manik Dingra",
@@ -28,7 +32,16 @@ export const metadata: Metadata = {
     "Backend Development",
     "React Developer",
     "Next.js Developer",
-    "Devops",
+    "Manik Dingra Portfolio",
+    "Manik Dingra's Portfolio",
+    "Manik Dingra's Website",
+    "Manik Dingra's Personal Website",
+    "Manik Dingra's Personal Portfolio",
+    "Manik Dingra's Personal Projects",
+    "Manik Dingra's Personal Experience",
+    "Personal Portfolio",
+    "Personal Projects",
+    "Portfolio",
   ],
   authors: [{ name: "Manik Dingra" }],
   creator: "Manik Dingra",
@@ -50,7 +63,7 @@ export const metadata: Metadata = {
     description: "Full-stack software engineer crafting exceptional digital experiences",
     images: [
       {
-        url: "/og-image.png", // You'll need to add this image to your public folder
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Manik Dingra - Full-stack Developer",
