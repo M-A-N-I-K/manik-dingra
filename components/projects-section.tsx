@@ -86,7 +86,8 @@ const ProjectsSection = () => {
     return (
         <motion.section
             ref={sectionRef}
-            className="relative py-20 bg-gray-900 overflow-hidden"
+            className="relative py-20 overflow-hidden"
+            style={{ backgroundColor: 'var(--background)' }}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -99,11 +100,11 @@ const ProjectsSection = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 flex items-center justify-center gap-2 md:gap-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 flex items-center justify-center gap-2 md:gap-4" style={{ color: 'var(--foreground)' }}>
                         Projects
-                        <PiProjectorScreenBold className="w-6 h-6 md:w-8 md:h-8 text-violet-400" />
+                        <PiProjectorScreenBold className="w-6 h-6 md:w-8 md:h-8" style={{ color: 'var(--primary)' }} />
                     </h2>
-                    <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto" />
+                    <div className="w-16 md:w-24 h-1 mx-auto" style={{ background: `linear-gradient(to right, var(--primary), var(--ring))` }} />
                 </motion.div>
 
                 <div className="grid gap-8 max-w-6xl grid-cols-1 md:grid-cols-2 mx-auto">
