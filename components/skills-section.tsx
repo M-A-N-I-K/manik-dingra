@@ -2,21 +2,26 @@
 
 import React, { useState } from 'react';
 import {
-    Code2,
-    Server,
-    Box,
-    CircuitBoard,
-    FileCode,
-    Database,
-    Cloud,
-    GitBranch,
-    Layers,
-    Palette,
+    SiTypescript,
+    SiJavascript,
+    SiPython,
+    SiReact,
+    SiNextdotjs,
+    SiTailwindcss,
+    SiNodedotjs,
+    SiExpress,
+    SiMongodb,
+    SiRedis,
+    SiPostgresql,
+    SiDocker,
+    SiGit,
+    SiFlask,
+    SiSanity,
+    SiAmazonwebservices,
+} from 'react-icons/si';
+import {
     Sparkles,
-    Infinity,
     RefreshCw,
-    Leaf,
-    Boxes,
 } from 'lucide-react';
 
 interface Skill {
@@ -33,29 +38,39 @@ const SkillsSection = () => {
         {
             name: 'TypeScript',
             category: 'Languages',
-            icon: <FileCode className="w-6 h-6 text-blue-400" />
+            icon: <SiTypescript className="w-6 h-6 text-blue-400" />
         },
         {
             name: 'JavaScript',
             category: 'Languages',
-            icon: <Code2 className="w-6 h-6 text-yellow-400" />
+            icon: <SiJavascript className="w-6 h-6 text-yellow-400" />
+        },
+        {
+            name: 'Python',
+            category: 'Languages',
+            icon: <SiPython className="w-6 h-6 text-green-400" />
+        },
+        {
+            name: 'Flask',
+            category: 'Backend',
+            icon: <SiFlask className="w-6 h-6 text-gray-300" />
         },
 
         // Frontend
         {
             name: 'React',
             category: 'Frontend',
-            icon: <CircuitBoard className="w-6 h-6 text-cyan-400" />
+            icon: <SiReact className="w-6 h-6 text-cyan-400" />
         },
         {
             name: 'Next.js',
             category: 'Frontend',
-            icon: <Layers className="w-6 h-6 text-white" />
+            icon: <SiNextdotjs className="w-6 h-6 text-white" />
         },
         {
             name: 'Tailwind',
             category: 'Frontend',
-            icon: <Palette className="w-6 h-6 text-sky-400" />
+            icon: <SiTailwindcss className="w-6 h-6 text-sky-400" />
         },
         {
             name: 'Framer Motion',
@@ -67,44 +82,44 @@ const SkillsSection = () => {
         {
             name: 'Node.js',
             category: 'Backend',
-            icon: <Server className="w-6 h-6 text-green-400" />
+            icon: <SiNodedotjs className="w-6 h-6 text-green-400" />
         },
         {
             name: "Express.js",
             category: "Backend",
-            icon: <Infinity className="w-6 h-6 text-gray-400" />
+            icon: <SiExpress className="w-6 h-6 text-gray-400" />
         },
         {
             name: 'MongoDB',
             category: 'Backend',
-            icon: <Leaf className="w-6 h-6 text-green-500" />
+            icon: <SiMongodb className="w-6 h-6 text-green-500" />
         },
         {
             name: 'Redis',
             category: 'Backend',
-            icon: <Database className="w-6 h-6 text-red-400" />
+            icon: <SiRedis className="w-6 h-6 text-red-400" />
         },
         {
             name: 'PostgreSQL',
             category: 'Backend',
-            icon: <Database className="w-6 h-6 text-blue-400" />
+            icon: <SiPostgresql className="w-6 h-6 text-blue-400" />
         },
 
         // Others
         {
             name: 'Docker',
             category: 'Others',
-            icon: <Box className="w-6 h-6 text-blue-400" />
+            icon: <SiDocker className="w-6 h-6 text-blue-400" />
         },
         {
             name: 'Git',
             category: 'Others',
-            icon: <GitBranch className="w-6 h-6 text-orange-400" />
+            icon: <SiGit className="w-6 h-6 text-orange-400" />
         },
         {
             name: 'AWS',
             category: 'Others',
-            icon: <Cloud className="w-6 h-6 text-yellow-500" />
+            icon: <SiAmazonwebservices className="w-6 h-6 text-yellow-500" />
         },
         {
             name: "CI/CD",
@@ -114,7 +129,7 @@ const SkillsSection = () => {
         {
             name: "Sanity",
             category: "Others",
-            icon: <Boxes className="w-6 h-6 text-red-400" />
+            icon: <SiSanity className="w-6 h-6 text-red-400" />
         },
     ];
 
