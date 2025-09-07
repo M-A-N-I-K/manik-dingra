@@ -140,18 +140,18 @@ const SkillsSection = () => {
         : skills;
 
     return (
-        <section className="py-24 min-h-screen bg-gray-900">
+        <section className="py-24 min-h-screen" style={{ backgroundColor: 'var(--background)' }}>
             <div className="max-w-6xl mx-auto px-4">
                 {/* Section Title */}
                 <div className="text-center mb-16">
                     <div className="relative inline-block">
-                        <h2 className="text-2xl md:text-5xl font-bold">
+                        <h2 className="text-2xl md:text-5xl font-bold" style={{ color: 'var(--foreground)' }}>
                             {"Skills & Technologies".split("").map((letter, i) => (
                                 <span
                                     key={i}
                                     className="inline-block"
                                     style={{
-                                        background: `linear-gradient(to right, rgb(167, 139, 250) ${i * 5}%, rgb(139, 92, 246) ${i * 10}%)`,
+                                        background: `linear-gradient(to right, var(--primary) ${i * 5}%, var(--ring) ${i * 10}%)`,
                                         WebkitBackgroundClip: "text",
                                         WebkitTextFillColor: "transparent"
                                     }}
@@ -160,19 +160,24 @@ const SkillsSection = () => {
                                 </span>
                             ))}
                         </h2>
-                        <div className="absolute -inset-x-4 -inset-y-2 bg-gradient-to-r from-violet-500/20 to-purple-500/20 blur-xl rounded-full" />
+                        <div className="absolute -inset-x-4 -inset-y-2 blur-xl rounded-full" style={{ background: `linear-gradient(to right, var(--primary)/10, var(--ring)/10)` }} />
                     </div>
-                    <div className="h-1 w-24 mx-auto mt-6 rounded-full bg-gradient-to-r from-violet-500/50 to-purple-500/50" />
+                    <div className="h-1 w-24 mx-auto mt-6 rounded-full" style={{ background: `linear-gradient(to right, var(--primary), var(--ring))` }} />
                 </div>
 
                 {/* Category Filters */}
                 <div className="flex flex-wrap justify-center gap-3 mb-12">
                     <button
                         onClick={() => setActiveCategory(null)}
-                        className={`px-5 py-2 rounded-full text-sm transition-all ${activeCategory === null
-                            ? 'bg-violet-500/20 text-violet-300 border border-violet-500/30'
-                            : 'text-gray-400 hover:text-violet-300'
+                        className={`px-5 py-2 rounded-full text-sm transition-all border ${activeCategory === null
+                            ? 'text-white'
+                            : 'hover:opacity-80'
                             }`}
+                        style={{
+                            backgroundColor: activeCategory === null ? 'var(--primary)' : 'var(--secondary)',
+                            color: activeCategory === null ? 'var(--primary-foreground)' : 'var(--secondary-foreground)',
+                            borderColor: activeCategory === null ? 'var(--primary)' : 'var(--border)'
+                        }}
                     >
                         All
                     </button>
@@ -180,10 +185,15 @@ const SkillsSection = () => {
                         <button
                             key={category}
                             onClick={() => setActiveCategory(category)}
-                            className={`px-5 py-2 rounded-full text-sm transition-all ${activeCategory === category
-                                ? 'bg-violet-500/20 text-violet-300 border border-violet-500/30'
-                                : 'text-gray-400 hover:text-violet-300'
+                            className={`px-5 py-2 rounded-full text-sm transition-all border ${activeCategory === category
+                                ? 'text-white'
+                                : 'hover:opacity-80'
                                 }`}
+                            style={{
+                                backgroundColor: activeCategory === category ? 'var(--primary)' : 'var(--secondary)',
+                                color: activeCategory === category ? 'var(--primary-foreground)' : 'var(--secondary-foreground)',
+                                borderColor: activeCategory === category ? 'var(--primary)' : 'var(--border)'
+                            }}
                         >
                             {category}
                         </button>
@@ -197,11 +207,27 @@ const SkillsSection = () => {
                             key={skill.name}
                             className="group relative cursor-grab"
                         >
-                            <div className="absolute inset-0 bg-violet-500/10 rounded-xl blur-xl transition-opacity opacity-0 group-hover:opacity-100" />
-                            <div className="relative bg-gray-800/50 backdrop-blur-sm rounded-xl border border-gray-700/50 p-4 transition-colors hover:border-violet-500/50 hover:-translate-y-1 duration-200">
+                            <div className="absolute inset-0 rounded-xl blur-xl transition-opacity opacity-0 group-hover:opacity-100" style={{ backgroundColor: 'var(--primary)/5' }} />
+                            <div
+                                className="relative backdrop-blur-sm rounded-xl border p-4 transition-all duration-200 hover:-translate-y-1 shadow-sm"
+                                style={{
+                                    backgroundColor: 'var(--card)',
+                                    borderColor: 'var(--border)',
+                                    color: 'var(--card-foreground)',
+                                    boxShadow: '0 1px 3px 0 var(--border)/20'
+                                }}
+                                onMouseEnter={(e) => {
+                                    e.currentTarget.style.borderColor = 'var(--primary)';
+                                    e.currentTarget.style.boxShadow = '0 4px 12px 0 var(--primary)/20';
+                                }}
+                                onMouseLeave={(e) => {
+                                    e.currentTarget.style.borderColor = 'var(--border)';
+                                    e.currentTarget.style.boxShadow = '0 1px 3px 0 var(--border)/20';
+                                }}
+                            >
                                 <div className="flex items-center gap-3">
                                     {skill.icon}
-                                    <span className="font-medium text-gray-300 group-hover:text-violet-300 transition-colors">
+                                    <span className="font-medium transition-colors group-hover:opacity-80">
                                         {skill.name}
                                     </span>
                                 </div>

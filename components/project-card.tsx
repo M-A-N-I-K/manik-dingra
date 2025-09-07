@@ -86,8 +86,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
             onMouseLeave={handleMouseLeave}
         >
             <motion.div
-                className="relative bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-lg border border-gray-700/50"
+                className="relative rounded-xl overflow-hidden backdrop-blur-lg border"
                 style={{
+                    backgroundColor: 'var(--card)/80',
+                    borderColor: 'var(--border)/50',
                     rotateX,
                     rotateY,
                     transformStyle: "preserve-3d",
@@ -116,7 +118,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                         transition={{ duration: 0.4 }}
                     />
                     <motion.div
-                        className="absolute inset-0 bg-gradient-to-t from-gray-900 via-gray-900/50 to-transparent"
+                        className="absolute inset-0 bg-gradient-to-t via-transparent to-transparent"
+                        style={{ background: `linear-gradient(to top, var(--background), var(--background)/50, transparent)` }}
                         initial={{ opacity: 0.5 }}
                         whileHover={{ opacity: 0.7 }}
                         transition={{ duration: 0.3 }}
@@ -135,8 +138,11 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                     {/* Title and Status */}
                     <div className="flex items-center gap-3 mb-3">
                         <motion.h3
-                            className="text-2xl font-bold text-violet-300"
-                            style={{ translateZ: 50 }}
+                            className="text-2xl font-bold"
+                            style={{
+                                color: 'var(--primary)',
+                                translateZ: 50
+                            }}
                         >
                             {project.title}
                         </motion.h3>
@@ -160,8 +166,11 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
                     {/* Description */}
                     <motion.p
-                        className="text-gray-300 mb-4 leading-relaxed"
-                        style={{ translateZ: 30 }}
+                        className="mb-4 leading-relaxed"
+                        style={{
+                            color: 'var(--muted-foreground)',
+                            translateZ: 30
+                        }}
                     >
                         {project.description}
                     </motion.p>
@@ -174,10 +183,15 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                         {project.technologies.map((tech, i) => (
                             <motion.span
                                 key={i}
-                                className="px-3 py-1 bg-violet-500/20 rounded-full text-violet-300 text-sm font-medium backdrop-blur-sm border border-violet-500/20"
+                                className="px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm border"
+                                style={{
+                                    backgroundColor: 'var(--primary)/20',
+                                    color: 'var(--primary)',
+                                    borderColor: 'var(--primary)/20'
+                                }}
                                 whileHover={{
                                     scale: 1.05,
-                                    backgroundColor: "rgba(124, 58, 237, 0.3)"
+                                    backgroundColor: 'var(--primary)/30'
                                 }}
                             >
                                 {tech}
@@ -196,10 +210,14 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
                                 href={link.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="px-4 py-2 bg-violet-600/20 rounded-lg text-violet-300 font-medium hover:bg-violet-600/30 transition-colors flex items-center gap-2"
+                                className="px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2"
+                                style={{
+                                    backgroundColor: 'var(--primary)/20',
+                                    color: 'var(--primary)'
+                                }}
                                 whileHover={{
                                     scale: 1.05,
-                                    backgroundColor: "rgba(124, 58, 237, 0.3)"
+                                    backgroundColor: 'var(--primary)/30'
                                 }}
                             >
                                 {link.icon} {link.label}
@@ -211,7 +229,8 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
 
             {/* Hover Glow Effect */}
             <motion.div
-                className="absolute -inset-1 rounded-xl bg-gradient-to-r from-violet-600/20 to-purple-600/20 -z-10 opacity-0 group-hover:opacity-100 blur-xl"
+                className="absolute -inset-1 rounded-xl -z-10 opacity-0 group-hover:opacity-100 blur-xl"
+                style={{ background: `linear-gradient(to right, var(--primary)/20, var(--ring)/20)` }}
                 animate={isHovered ? {
                     opacity: [0, 0.5, 0],
                     scale: [0.8, 1.2, 0.8],

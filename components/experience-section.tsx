@@ -58,27 +58,31 @@ const ExperienceCard = ({ data, index }: { data: ExperienceData, index: number }
         >
             {/* Connection Line - Hidden on mobile */}
             {index !== experiences.length - 1 && (
-                <div className="absolute left-8 md:left-14 top-24 w-1 h-full bg-gradient-to-b from-violet-500/50 to-transparent hidden md:block" />
+                <div className="absolute left-8 md:left-14 top-24 w-1 h-full hidden md:block" style={{ background: `linear-gradient(to bottom, var(--primary)/50, transparent)` }} />
             )}
 
             <div className="relative flex flex-col md:flex-row items-center md:items-start gap-4 md:gap-8 p-4 md:p-6">
                 {/* Icon Circle */}
-                <div className={`relative shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full bg-${data.color}-500/20 
-                        flex items-center justify-center group-hover:scale-110 transition-transform`}>
-                    <data.icon className={`w-6 h-6 md:w-8 md:h-8 text-${data.color}-400`} />
+                <div
+                    className="relative shrink-0 w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform"
+                    style={{ backgroundColor: 'var(--primary)/20' }}
+                >
+                    <data.icon className="w-6 h-6 md:w-8 md:h-8" style={{ color: 'var(--primary)' }} />
                     {/* Glow Effect */}
-                    <div className={`absolute inset-0 rounded-full bg-${data.color}-500/20 blur-lg opacity-0 
-                          group-hover:opacity-100 transition-opacity`} />
+                    <div
+                        className="absolute inset-0 rounded-full blur-lg opacity-0 group-hover:opacity-100 transition-opacity"
+                        style={{ backgroundColor: 'var(--primary)/20' }}
+                    />
                 </div>
 
                 {/* Content */}
                 <div className="flex-1 w-full">
                     <div className="flex flex-col md:flex-row justify-between items-center md:items-start mb-2 text-center md:text-left">
                         <div>
-                            <h3 className="text-lg md:text-xl font-bold text-white mb-1">{data.title}</h3>
-                            <p className="text-violet-400 text-sm md:text-base">{data.company}</p>
+                            <h3 className="text-lg md:text-xl font-bold mb-1" style={{ color: 'var(--foreground)' }}>{data.title}</h3>
+                            <p className="text-sm md:text-base" style={{ color: 'var(--primary)' }}>{data.company}</p>
                         </div>
-                        <span className="text-gray-400 text-xs md:text-sm mt-1 md:mt-0">{data.period}</span>
+                        <span className="text-xs md:text-sm mt-1 md:mt-0" style={{ color: 'var(--muted-foreground)' }}>{data.period}</span>
                     </div>
 
                     {/* <p className="text-gray-300 mb-4 text-sm md:text-base text-center md:text-left">{data.description}</p> */}
@@ -88,8 +92,12 @@ const ExperienceCard = ({ data, index }: { data: ExperienceData, index: number }
                         {data.skills.map((skill: string, i: number) => (
                             <span
                                 key={i}
-                                className={`px-2 md:px-3 py-1 rounded-full text-xs md:text-sm border border-${data.color}-500/20 
-                           bg-${data.color}-500/10 text-${data.color}-300`}
+                                className="px-2 md:px-3 py-1 rounded-full text-xs md:text-sm border"
+                                style={{
+                                    borderColor: 'var(--primary)/20',
+                                    backgroundColor: 'var(--primary)/10',
+                                    color: 'var(--primary)'
+                                }}
                             >
                                 {skill}
                             </span>
@@ -106,7 +114,7 @@ const ExperienceSection = () => {
     const isInView = useInView(sectionRef, { once: true });
 
     return (
-        <section ref={sectionRef} className="min-h-screen bg-gray-900 py-12 md:py-20 px-4">
+        <section ref={sectionRef} className="min-h-screen py-12 md:py-20 px-4" style={{ backgroundColor: 'var(--background)' }}>
             <div className="max-w-6xl mx-auto">
                 {/* Section Header */}
                 <motion.div
@@ -115,11 +123,11 @@ const ExperienceSection = () => {
                     animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.8 }}
                 >
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 flex items-center justify-center gap-2 md:gap-4">
+                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 flex items-center justify-center gap-2 md:gap-4" style={{ color: 'var(--foreground)' }}>
                         Experience
-                        <GanttChart className="w-6 h-6 md:w-8 md:h-8 text-violet-400" />
+                        <GanttChart className="w-6 h-6 md:w-8 md:h-8" style={{ color: 'var(--primary)' }} />
                     </h2>
-                    <div className="w-16 md:w-24 h-1 bg-gradient-to-r from-violet-500 to-fuchsia-500 mx-auto" />
+                    <div className="w-16 md:w-24 h-1 mx-auto" style={{ background: `linear-gradient(to right, var(--primary), var(--ring))` }} />
                 </motion.div>
 
                 {/* Timeline */}
