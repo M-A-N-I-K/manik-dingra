@@ -2,120 +2,102 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  /* Light mode colors - White background with purple theme */
-  --background: #F9F9F9;
-  --foreground: #8b5cf6;
-  --primary: #8b5cf6;
-  --primary-foreground: #ffffff;
-  --secondary: #f3f4f6;
-  --secondary-foreground: #8b5cf6;
-  --muted: #f9fafb;
-  --muted-foreground: #6b7280;
-  --accent: #f3f4f6;
-  --accent-foreground: #8b5cf6;
-  --border: #e5e7eb;
-  --card: #ffffff;
-  --card-foreground: #8b5cf6;
-  --popover: #ffffff;
-  --popover-foreground: #8b5cf6;
-  --destructive: #ef4444;
-  --destructive-foreground: #ffffff;
-  --ring: #8b5cf6;
-}
+@layer base {
+  :root {
+    /* Light Mode: Sleek, clean white/zinc */
+    --background: 0 0% 100%;
+    --foreground: 240 10% 10%;
 
-.dark {
-  /* Dark mode colors - Keep current purple theme */
-  --background: #0a0a0a;
-  --foreground: #ededed;
-  --primary: #8b5cf6;
-  --primary-foreground: #ffffff;
-  --secondary: #1f2937;
-  --secondary-foreground: #ededed;
-  --muted: #111827;
-  --muted-foreground: #9ca3af;
-  --accent: #374151;
-  --accent-foreground: #ededed;
-  --border: #374151;
-  --card: #111827;
-  --card-foreground: #ededed;
-  --popover: #111827;
-  --popover-foreground: #ededed;
-  --destructive: #dc2626;
-  --destructive-foreground: #ededed;
-  --ring: #8b5cf6;
-}
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 10%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 10%;
+    
+    --primary: 250 80% 60%; /* Modern electric purple/indigo */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 5% 96%; /* Subtle zinc */
+    --secondary-foreground: 240 10% 10%;
+    
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 5% 45%;
+    
+    --accent: 250 80% 60%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-::-moz-selection {
-  color: #ebf8f1;
-  background: #ce53e0;
-}
-::selection {
-  color: #ebf8f1;
-  background: #ce53e0;
-}
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 250 80% 60%;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-html.lenis {
-  height: auto;
-}
-
-.lenis.lenis-smooth {
-  scroll-behavior: auto;
-}
-
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-/* Hide scrollbar but keep functionality */
-.hide-scrollbar {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-.hide-scrollbar::-webkit-scrollbar {
-  display: none;
-}
-
-/* Custom snap scroll behavior */
-.snap-mandatory {
-  scroll-snap-type: y mandatory;
-}
-
-.snap-start {
-  scroll-snap-align: start;
-}
-
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
+    --radius: 1rem;
   }
-  50% {
-    transform: translateY(-20px);
+
+  .dark {
+    /* Dark Mode: Pure premium dark, high contrast */
+    --background: 240 10% 4%; /* Near black */
+    --foreground: 0 0% 98%;
+
+    --card: 240 10% 6%;
+    --card-foreground: 0 0% 98%;
+    
+    --popover: 240 10% 6%;
+    --popover-foreground: 0 0% 98%;
+    
+    --primary: 250 100% 75%; /* Vibrant electric pastel purple */
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 240 10% 12%; 
+    --secondary-foreground: 0 0% 98%;
+    
+    --muted: 240 10% 12%;
+    --muted-foreground: 240 5% 65%;
+    
+    --accent: 250 100% 75%;
+    --accent-foreground: 0 0% 100%;
+    
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 95%;
+
+    --border: 240 10% 15%;
+    --input: 240 10% 15%;
+    --ring: 250 100% 75%;
   }
 }
 
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 0.5;
+@layer base {
+  * {
+    @apply border-border;
   }
-  50% {
-    opacity: 1;
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+    cursor: none; /* We will use a custom glowing cursor */
   }
+}
+
+/* Glassmorphism utility */
+.glass {
+  @apply bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 dark:border-white/10;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground) / 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.8);
 }

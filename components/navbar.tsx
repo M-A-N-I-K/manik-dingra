@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import Link from 'next/link';
 import { Mail, FileText, Menu, X, Sun, Moon } from 'lucide-react';
 import { FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
-import { useTheme } from './theme-provider';
+import { useTheme } from 'next-themes';
 
 
 export const socialLinks = [
@@ -13,37 +13,37 @@ export const socialLinks = [
         icon: FaGithub,
         href: 'https://github.com/M-A-N-I-K',
         label: 'GitHub',
-        color: 'hover:text-gray-200'
+        color: 'hover:text-primary'
     },
     {
         icon: FaLinkedin,
         href: 'https://www.linkedin.com/in/manik-dingra/',
         label: 'LinkedIn',
-        color: 'hover:text-blue-400'
+        color: 'hover:text-primary'
     },
     {
         icon: FaTwitter,
         href: 'https://twitter.com/manik_dingra',
         label: 'Twitter',
-        color: 'hover:text-blue-400'
+        color: 'hover:text-primary'
     },
     {
         icon: Mail,
         href: 'mailto:manikdhingra0582@gmail.com',
         label: 'Email',
-        color: 'hover:text-violet-400'
+        color: 'hover:text-primary'
     },
     {
         icon: FileText,
         href: 'https://drive.google.com/file/d/1V4i4lY4rZcS7jx9iRNzMANyytJQFwoWE/view?usp=sharing',
         label: 'Resume',
-        color: 'hover:text-green-400'
+        color: 'hover:text-primary'
     },
 ];
 
 const NavBar = () => {
     const [isOpen, setIsOpen] = useState(false);
-    const { theme, toggleTheme } = useTheme();
+    const { theme, setTheme } = useTheme();
 
     const navItems = [
         { name: 'Home', href: '#home' },
@@ -133,7 +133,7 @@ const NavBar = () => {
                         >
                             {/* Theme Toggle */}
                             <motion.button
-                                onClick={toggleTheme}
+                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                                 className="transition-colors relative group"
                                 style={{ color: 'var(--muted-foreground)' }}
                                 onMouseEnter={(e) => {
@@ -162,36 +162,13 @@ const NavBar = () => {
                                     {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
                                 </span>
                             </motion.button>
-
-                            {socialLinks.map((social, index) => (
-                                <motion.a
-                                    key={social.label}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`text-gray-400 ${social.color} transition-colors relative group`}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                    initial={{ opacity: 0, y: -20 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    transition={{ delay: (index + 1) * 0.1 }}
-                                >
-                                    <social.icon className="w-5 h-5" />
-                                    <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 
-                                            px-2 py-1 bg-gray-900 text-xs text-gray-300 rounded-md
-                                            opacity-0 group-hover:opacity-100 transition-opacity
-                                            whitespace-nowrap pointer-events-none">
-                                        {social.label}
-                                    </span>
-                                </motion.a>
-                            ))}
                         </div>
 
                         {/* Mobile Social Links - Always visible */}
                         <div className="flex md:hidden items-center gap-3">
                             {/* Theme Toggle - Mobile */}
                             <motion.button
-                                onClick={toggleTheme}
+                                onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                                 className="transition-colors"
                                 style={{ color: 'var(--muted-foreground)' }}
                                 onMouseEnter={(e) => {
@@ -205,20 +182,6 @@ const NavBar = () => {
                             >
                                 {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
                             </motion.button>
-
-                            {socialLinks.map((social) => (
-                                <motion.a
-                                    key={social.label}
-                                    href={social.href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={`text-gray-400 ${social.color} transition-colors`}
-                                    whileHover={{ scale: 1.1 }}
-                                    whileTap={{ scale: 0.95 }}
-                                >
-                                    <social.icon className="w-5 h-5" />
-                                </motion.a>
-                            ))}
                         </div>
                     </div>
                 </div>
