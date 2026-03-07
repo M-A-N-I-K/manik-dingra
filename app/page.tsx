@@ -14,7 +14,7 @@ export default function Page() {
     <>
       <CustomCursor />
       <SakuraPetals />
-      
+
       {/* Fixed Theme Toggle floating button */}
       <div className="fixed top-6 right-6 z-50">
         <ThemeToggle />
@@ -24,9 +24,9 @@ export default function Page() {
         <LenisScroll />
         <Hero />
         <About />
+        <Experience />
         <Skills />
         <Projects />
-        <Experience />
         <Contact />
       </main>
     </>
