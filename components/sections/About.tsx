@@ -7,65 +7,83 @@ export function About() {
   const cards = [
     {
       title: "Frontend Engineering",
-      description: "Building responsive, accessible, and stunning UIs using React, Next.js, and Framer Motion.",
+      description: "Crafting flexible, living interfaces — like a Gomu Gomu stretch, they adapt and bounce back on any screen.",
       icon: Layout,
+      label: "Gomu Gomu no UI",
     },
     {
       title: "Backend Architecture",
-      description: "Designing robust APIs and microservices with Node.js, Express, and Serverless technologies.",
+      description: "Building fortified server systems worthy of Marine HQ — robust APIs and microservices built to withstand any storm.",
       icon: Server,
+      label: "Marine Fortress",
     },
     {
       title: "Database Management",
-      description: "Architecting efficient schemas and complex queries in PostgreSQL, MongoDB, and DynamoDB.",
+      description: "Navigating complex data seas, charting schemas like treasure maps in PostgreSQL, MongoDB, and DynamoDB.",
       icon: Database,
+      label: "Treasure Navigation",
     },
     {
       title: "Continuous Integration",
-      description: "Automating deployments and managing cloud infrastructure efficiently with AWS.",
+      description: "Keeping the ship's engine running at full throttle — automated deployments and cloud infrastructure on AWS.",
       icon: Code2,
+      label: "Engine Room",
     },
   ];
 
   return (
     <section id="about" className="py-24 relative overflow-hidden">
+      {/* Subtle ocean depth background */}
+      <div className="absolute inset-0 map-texture opacity-40 z-0" />
+
       <div className="container px-6 mx-auto relative z-10">
         <div className="flex flex-col md:flex-row gap-16 items-center">
-          
-          {/* Avatar/Story Side */}
-          <motion.div 
+
+          {/* Story Side */}
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true, margin: "-100px" }}
             className="flex-1 space-y-6"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-sm font-medium text-secondary mb-2">
-              <div className="w-2 h-2 rounded-full bg-secondary animate-pulse" />
-              About Me
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-sm font-semibold text-primary mb-2">
+              <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              The Pirate&apos;s Log
             </div>
             <h2 className="text-4xl md:text-5xl font-bold">
-              Translating ideas into <span className="text-primary italic">reality</span>.
+              Charting my course to the{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary italic">
+                Grand Line
+              </span>
+              .
             </h2>
             <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
               <p>
-                As a passionate Full Stack Developer, I specialize in bridging the gap between elegant UI/UX and robust backend systems. Based in Delhi, India, I enjoy solving complex problems and turning them into simple, beautiful, and intuitive interfaces.
+                As a passionate Full Stack Developer, I bridge the gap between elegant UI/UX and rock-solid backend systems — like a navigator who reads both the Log Pose and the stars. Based in Delhi, India, I turn complex problems into intuitive, beautiful experiences.
               </p>
               <p>
-                My journey in tech has led me to work extensively with JavaScript/TypeScript ecosystems, creating applications that are not only performant but also provide seamless user experiences.
+                My voyage through the JavaScript/TypeScript seas has led me to build high-performance applications where every crew member — from frontend to database — pulls their weight toward the destination.
               </p>
             </div>
-            
-            {/* Anime style separator */}
+
+            {/* One Piece style compass separator */}
             <div className="flex items-center gap-4 pt-4">
               <div className="h-px bg-gradient-to-r from-primary to-transparent flex-1" />
-              <div className="w-2 h-2 rotate-45 bg-primary" />
-              <div className="w-2 h-2 rotate-45 border border-primary" />
+              <div className="relative w-6 h-6 flex items-center justify-center">
+                <div className="w-4 h-4 rotate-45 border-2 border-primary" />
+                <div className="absolute w-2 h-2 bg-primary rotate-45" />
+              </div>
+              <span className="text-primary/60 text-xs font-bold tracking-widest">⚓</span>
+              <div className="relative w-6 h-6 flex items-center justify-center">
+                <div className="w-4 h-4 rotate-45 border-2 border-primary" />
+                <div className="absolute w-2 h-2 bg-secondary rotate-45" />
+              </div>
               <div className="h-px bg-gradient-to-l from-primary to-transparent flex-1" />
             </div>
           </motion.div>
 
-          {/* Cards Side */}
+          {/* Capability Cards */}
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full">
             {cards.map((card, index) => (
               <motion.div
@@ -75,10 +93,15 @@ export function About() {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, margin: "-50px" }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="glass p-6 rounded-2xl border-white/5 dark:border-white/5 hover:border-primary/50 transition-colors group"
+                className="parchment-glass p-6 rounded-2xl hover:border-primary/50 transition-colors group"
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-4 group-hover:scale-110 group-hover:bg-primary transition-all duration-300 group-hover:text-background">
-                  <card.icon className="w-6 h-6" />
+                <div className="flex items-start justify-between mb-3">
+                  <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary transition-all duration-300 group-hover:text-primary-foreground">
+                    <card.icon className="w-6 h-6" />
+                  </div>
+                  <span className="text-xs text-primary/60 font-mono font-bold border border-primary/20 rounded-full px-2 py-0.5">
+                    {card.label}
+                  </span>
                 </div>
                 <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{card.title}</h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">

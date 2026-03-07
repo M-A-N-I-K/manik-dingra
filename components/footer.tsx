@@ -93,7 +93,7 @@ const Footer = () => {
                         className="text-sm"
                         style={{ color: 'var(--muted-foreground)' }}
                     >
-                        © {currentYear} All rights reserved
+                        ⚓ © {currentYear} Sailing the Grand Line
                     </motion.div>
                 </div>
 

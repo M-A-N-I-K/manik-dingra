@@ -2,11 +2,12 @@ import { Hero } from "@/components/sections/Hero";
 import { About } from "@/components/sections/About";
 import { Skills } from "@/components/sections/Skills";
 import { Projects } from "@/components/sections/Projects";
+import { Freelance } from "@/components/sections/Freelance";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { SakuraPetals } from "@/components/ui/SakuraPetals";
-import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { OnePieceBackground } from "@/components/ui/OnePieceBackground";
 import LenisScroll from "@/lib/lenis-scroll";
 
 export default function Page() {
@@ -14,11 +15,7 @@ export default function Page() {
     <>
       <CustomCursor />
       <SakuraPetals />
-
-      {/* Fixed Theme Toggle floating button */}
-      <div className="fixed top-6 right-6 z-50">
-        <ThemeToggle />
-      </div>
+      <OnePieceBackground />
 
       <main className="min-h-screen bg-background text-foreground font-sans relative">
         <LenisScroll />
@@ -27,6 +24,7 @@ export default function Page() {
         <Experience />
         <Skills />
         <Projects />
+        <Freelance />
         <Contact />
       </main>
     </>
