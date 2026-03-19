@@ -2,8 +2,45 @@
 
 import { motion } from "framer-motion";
 import { Send } from "lucide-react";
+import { useState } from "react";
 
 export function Contact() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState("");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    setErrorMsg("");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setErrorMsg(data.error ?? "Something went wrong.");
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      setErrorMsg("Network error. Please try again.");
+      setStatus("error");
+    }
+  };
+
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
       {/* Ocean depth background */}
@@ -68,43 +105,74 @@ export function Contact() {
             </div>
           </div>
 
-          <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {status === "success" ? (
+            <div className="text-center py-8 space-y-3">
+              <div className="text-4xl">🐌</div>
+              <p className="text-lg font-semibold text-foreground">Transmission sent!</p>
+              <p className="text-sm text-muted-foreground">The snail is on its way. I&apos;ll get back to you soon.</p>
+              <button
+                onClick={() => setStatus("idle")}
+                className="mt-4 text-sm text-primary underline underline-offset-2"
+              >
+                Send another
+              </button>
+            </div>
+          ) : (
+            <form className="space-y-6" onSubmit={handleSubmit}>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold pl-1">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={form.name}
+                    onChange={handleChange}
+                    required
+                    placeholder="Your name, pirate..."
+                    className="w-full px-4 py-3 bg-background/50 border border-primary/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-muted-foreground/50"
+                  />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm font-semibold pl-1">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                    required
+                    placeholder="your@ship.sea"
+                    className="w-full px-4 py-3 bg-background/50 border border-primary/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-muted-foreground/50"
+                  />
+                </div>
+              </div>
+
               <div className="space-y-2">
-                <label className="text-sm font-semibold pl-1">Name</label>
-                <input
-                  type="text"
-                  placeholder="Your name, pirate..."
-                  className="w-full px-4 py-3 bg-background/50 border border-primary/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-muted-foreground/50"
+                <label className="text-sm font-semibold pl-1">Message</label>
+                <textarea
+                  rows={4}
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  required
+                  placeholder="What's your bounty proposal?"
+                  className="w-full px-4 py-3 bg-background/50 border border-primary/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none placeholder:text-muted-foreground/50"
                 />
               </div>
-              <div className="space-y-2">
-                <label className="text-sm font-semibold pl-1">Email</label>
-                <input
-                  type="email"
-                  placeholder="your@ship.sea"
-                  className="w-full px-4 py-3 bg-background/50 border border-primary/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all placeholder:text-muted-foreground/50"
-                />
-              </div>
-            </div>
 
-            <div className="space-y-2">
-              <label className="text-sm font-semibold pl-1">Message</label>
-              <textarea
-                rows={4}
-                placeholder="What's your bounty proposal?"
-                className="w-full px-4 py-3 bg-background/50 border border-primary/15 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none placeholder:text-muted-foreground/50"
-              />
-            </div>
+              {status === "error" && (
+                <p className="text-sm text-red-500">{errorMsg}</p>
+              )}
 
-            <button
-              type="submit"
-              className="w-full py-4 bg-primary text-primary-foreground font-bold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-primary/25 group hover:shadow-neon hover:scale-[1.01]"
-            >
-              Send Transmission
-              <Send className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
-            </button>
-          </form>
+              <button
+                type="submit"
+                disabled={status === "loading"}
+                className="w-full py-4 bg-primary text-primary-foreground font-bold rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-lg shadow-primary/25 group hover:shadow-neon hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+              >
+                {status === "loading" ? "Sending..." : "Send Transmission"}
+                <Send className="w-4 h-4 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-transform" />
+              </button>
+            </form>
+          )}
         </motion.div>
       </div>
     </section>
