@@ -6,7 +6,6 @@ import {
   SiNextdotjs,
   SiNodedotjs,
   SiTypescript,
-  SiAmazonwebservices,
   SiMongodb,
   SiPostgresql,
   SiPrisma,
@@ -21,24 +20,70 @@ import {
   SiPython,
   SiAstro,
 } from "react-icons/si";
+import { FaAws } from "react-icons/fa";
 
 export function Skills() {
   const skills = [
-    { name: "JavaScript", icon: SiJavascript, color: "#F7DF1E", fruit: "Goro Goro" },
+    {
+      name: "JavaScript",
+      icon: SiJavascript,
+      color: "#F7DF1E",
+      fruit: "Goro Goro",
+    },
     { name: "Python", icon: SiPython, color: "#3776AB", fruit: "Doku Doku" },
     { name: "React", icon: SiReact, color: "#61DAFB", fruit: "Mera Mera" },
-    { name: "Next.js", icon: SiNextdotjs, color: "#ffffff", fruit: "Yomi Yomi" },
-    { name: "Node.js", icon: SiNodedotjs, color: "#339933", fruit: "Moku Moku" },
-    { name: "TypeScript", icon: SiTypescript, color: "#3178C6", fruit: "Ope Ope" },
+    {
+      name: "Next.js",
+      icon: SiNextdotjs,
+      color: "#ffffff",
+      fruit: "Yomi Yomi",
+    },
+    {
+      name: "Node.js",
+      icon: SiNodedotjs,
+      color: "#339933",
+      fruit: "Moku Moku",
+    },
+    {
+      name: "TypeScript",
+      icon: SiTypescript,
+      color: "#3178C6",
+      fruit: "Ope Ope",
+    },
     { name: "Go", icon: SiGo, color: "#00ADD8", fruit: "Soru Soru" },
-    { name: "AWS", icon: SiAmazonwebservices, color: "#FF9900", fruit: "Gura Gura" },
+    {
+      name: "AWS",
+      icon: FaAws,
+      color: "#FF9900",
+      fruit: "Gura Gura",
+    },
     { name: "MongoDB", icon: SiMongodb, color: "#47A248", fruit: "Mori Mori" },
-    { name: "PostgreSQL", icon: SiPostgresql, color: "#4169E1", fruit: "Sui Sui" },
+    {
+      name: "PostgreSQL",
+      icon: SiPostgresql,
+      color: "#4169E1",
+      fruit: "Sui Sui",
+    },
     { name: "Prisma", icon: SiPrisma, color: "#2D3748", fruit: "Bari Bari" },
     { name: "Flask", icon: SiFlask, color: "#ffffff", fruit: "Kilo Kilo" },
-    { name: "React Router", icon: SiReactrouter, color: "#CA4245", fruit: "Noro Noro" },
-    { name: "TailwindCSS", icon: SiTailwindcss, color: "#06B6D4", fruit: "Hana Hana" },
-    { name: "Firebase", icon: SiFirebase, color: "#FFCA28", fruit: "Pika Pika" },
+    {
+      name: "React Router",
+      icon: SiReactrouter,
+      color: "#CA4245",
+      fruit: "Noro Noro",
+    },
+    {
+      name: "TailwindCSS",
+      icon: SiTailwindcss,
+      color: "#06B6D4",
+      fruit: "Hana Hana",
+    },
+    {
+      name: "Firebase",
+      icon: SiFirebase,
+      color: "#FFCA28",
+      fruit: "Pika Pika",
+    },
     { name: "Docker", icon: SiDocker, color: "#2496ED", fruit: "Horo Horo" },
     { name: "Git", icon: SiGit, color: "#F05032", fruit: "Fuwa Fuwa" },
     { name: "Astro", icon: SiAstro, color: "#FF5D01", fruit: "Bara Bara" },
@@ -65,7 +110,8 @@ export function Skills() {
             Devil Fruit Arsenal
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Awakened abilities for building the modern digital world — each one a power consumed on the Grand Line.
+            Awakened abilities for building the modern digital world — each one
+            a power consumed on the Grand Line.
           </p>
         </motion.div>
 
@@ -88,9 +134,14 @@ export function Skills() {
 
               <skill.icon
                 className="w-10 h-10 mb-3 transition-all group-hover:scale-110 duration-300 group-hover:drop-shadow-lg"
-                style={{ color: skill.color !== "#ffffff" ? skill.color : "currentColor" }}
+                style={{
+                  color:
+                    skill.color !== "#ffffff" ? skill.color : "currentColor",
+                }}
               />
-              <span className="font-bold text-foreground relative z-10 text-center text-sm">{skill.name}</span>
+              <span className="font-bold text-foreground relative z-10 text-center text-sm">
+                {skill.name}
+              </span>
               <span className="text-[10px] text-primary/50 font-mono mt-1 relative z-10 opacity-0 group-hover:opacity-100 transition-opacity text-center">
                 {skill.fruit} no Mi
               </span>
@@ -106,7 +157,9 @@ export function Skills() {
           className="flex items-center justify-center gap-4 mt-16"
         >
           <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent flex-1" />
-          <span className="text-primary/40 text-sm font-bold tracking-widest">☠</span>
+          <span className="text-primary/40 text-sm font-bold tracking-widest">
+            ☠
+          </span>
           <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent flex-1" />
         </motion.div>
       </div>
