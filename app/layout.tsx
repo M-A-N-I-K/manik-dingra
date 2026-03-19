@@ -21,7 +21,8 @@ export const metadata: Metadata = {
     default: "Manik Dingra",
     template: "%s | Manik Dingra",
   },
-  description: "Full-stack software engineer specializing in building exceptional digital experiences. Explore my projects, skills, and journey in web development.",
+  description:
+    "Full Stack Developer | Next.js · TypeScript · AWS | Shipping production apps at scale",
   keywords: [
     "Manik Dingra",
     "Software Engineer",
@@ -59,7 +60,8 @@ export const metadata: Metadata = {
     url: "https://manik-dingra.in",
     siteName: "Manik Dingra Portfolio",
     title: "Manik Dingra | Full-stack Developer",
-    description: "Full-stack software engineer crafting exceptional digital experiences",
+    description:
+      "Full Stack Developer | Next.js · TypeScript · AWS | Shipping production apps at scale",
     images: [
       {
         url: "/og-image.png",
@@ -72,7 +74,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Manik Dingra | Software Engineer",
-    description: "Full-stack software engineer crafting exceptional digital experiences",
+    description:
+      "Full Stack Developer | Next.js · TypeScript · AWS | Shipping production apps at scale",
     images: ["/og-image.png"],
     creator: "@manik_dingra",
   },
@@ -100,9 +103,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable}`}
+      suppressHydrationWarning
+    >
       <body>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <NavBar />
           {children}
           <Footer />
