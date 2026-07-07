@@ -41,6 +41,14 @@ export function Projects() {
       gradient: "from-secondary/50 to-primary/50",
       bounty: "620,000,000",
     },
+    {
+      title: "AI Knowledge Base Assistant",
+      description: "A RAG platform that turns uploaded PDFs, DOCX, and Markdown files into a searchable logbook — extracting text, chunking it, and embedding it into pgvector for semantic retrieval. A LangChain-powered chat interface answers questions grounded in that knowledge base, with source citations and conversational history for natural follow-ups.",
+      techStack: ["Next.js", "TypeScript", "LangChain", "pgvector", "PostgreSQL", "Prisma", "NextAuth"],
+      live: null,
+      gradient: "from-primary/50 to-secondary/50",
+      bounty: "320,000,000",
+    },
   ];
 
   return (

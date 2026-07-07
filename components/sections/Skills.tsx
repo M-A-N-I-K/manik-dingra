@@ -19,8 +19,10 @@ import {
   SiJavascript,
   SiPython,
   SiAstro,
+  SiLangchain,
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
+import { TbVector } from "react-icons/tb";
 
 export function Skills() {
   const skills = [
@@ -87,6 +89,18 @@ export function Skills() {
     { name: "Docker", icon: SiDocker, color: "#2496ED", fruit: "Horo Horo" },
     { name: "Git", icon: SiGit, color: "#F05032", fruit: "Fuwa Fuwa" },
     { name: "Astro", icon: SiAstro, color: "#FF5D01", fruit: "Bara Bara" },
+    {
+      name: "LangChain",
+      icon: SiLangchain,
+      color: "#1C3C3C",
+      fruit: "Ito Ito",
+    },
+    {
+      name: "pgvector",
+      icon: TbVector,
+      color: "#4169E1",
+      fruit: "Awa Awa",
+    },
   ];
 
   return (
