@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
       {/* Ocean depth background gradient */}
-      <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-background to-background z-0" />
+      <div className="absolute inset-0 bg-gradient-radial from-primary/10 via-transparent to-transparent z-0" />
 
       {/* Horizon glow */}
       <div className="absolute bottom-0 left-0 right-0 h-64 bg-gradient-to-t from-accent/5 to-transparent z-0" />

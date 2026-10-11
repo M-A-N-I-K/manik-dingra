@@ -112,3 +112,26 @@
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--primary) / 0.8);
 }
+
+/* 3D depth helpers for TiltCard content. Intermediate wrappers between the
+   card and a depth-* element need .preserve-3d or the depth is flattened. */
+@layer utilities {
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+  .depth-10 {
+    transform: translateZ(10px);
+  }
+  .depth-20 {
+    transform: translateZ(20px);
+  }
+  .depth-30 {
+    transform: translateZ(30px);
+  }
+  .depth-40 {
+    transform: translateZ(40px);
+  }
+  .depth-60 {
+    transform: translateZ(60px);
+  }
+}

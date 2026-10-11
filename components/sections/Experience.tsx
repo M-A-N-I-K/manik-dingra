@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export function Experience() {
   const experiences = [
@@ -103,18 +104,22 @@ export function Experience() {
 
                 {/* Content Side */}
                 <div className={`md:w-1/2 relative ${index % 2 === 0 ? "md:text-right md:pr-16" : "md:ml-auto md:pl-16"}`}>
-                  <div className="parchment-glass p-6 rounded-2xl group-hover:border-primary/50 transition-colors">
+                  <TiltCard
+                    maxTilt={6}
+                    surfaceClassName="parchment-glass group-hover:border-primary/50 transition-colors"
+                    className="p-6"
+                  >
                     {/* Arc badge */}
-                    <div className={`flex items-center gap-2 mb-3 ${index % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
+                    <div className={`flex items-center gap-2 mb-3 depth-30 ${index % 2 === 0 ? "md:justify-end" : "justify-start"}`}>
                       <span className="text-xs font-bold text-primary/70 border border-primary/20 rounded-full px-2 py-0.5 font-mono">
                         ⚓ {exp.arc}
                       </span>
                     </div>
-                    <span className="text-sm font-semibold text-primary mb-2 block">{exp.date}</span>
-                    <h3 className="text-2xl font-bold mb-1">{exp.role}</h3>
-                    <h4 className="text-lg text-muted-foreground mb-4">{exp.company} • {exp.location}</h4>
+                    <span className="text-sm font-semibold text-primary mb-2 block depth-20">{exp.date}</span>
+                    <h3 className="text-2xl font-bold mb-1 depth-40">{exp.role}</h3>
+                    <h4 className="text-lg text-muted-foreground mb-4 depth-20">{exp.company} • {exp.location}</h4>
 
-                    <ul className="space-y-2 text-muted-foreground/90 text-sm text-left list-none">
+                    <ul className="space-y-2 text-muted-foreground/90 text-sm text-left list-none depth-10">
                       {exp.points.map((point, i) => (
                         <li key={i} className="flex gap-2">
                           <span className="text-primary mt-1">⚡</span>
@@ -122,7 +127,7 @@ export function Experience() {
                         </li>
                       ))}
                     </ul>
-                  </div>
+                  </TiltCard>
                 </div>
 
               </div>

@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 export function Projects() {
   const projects = [
@@ -85,89 +85,68 @@ export function Projects() {
 }
 
 function ProjectCard({ project, index }: { project: any, index: number }) {
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    const card = e.currentTarget;
-    const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left;
-    const y = e.clientY - box.top;
-    setRotateX((y - box.height / 2) / 10);
-    setRotateY(-(x - box.width / 2) / 10);
-  };
-
-  const handleMouseLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group relative h-full [perspective:1000px]"
+      className="group relative h-full"
     >
-      <motion.div
-        className="h-full rounded-2xl p-[1px] bg-gradient-to-br transition-all duration-300 shadow-2xl hover:shadow-neon"
-        animate={{ rotateX, rotateY }}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
-        style={{ transformStyle: "preserve-3d" }}
+      <TiltCard
+        maxTilt={12}
+        wrapperClassName="h-full"
+        surfaceClassName="parchment-glass border border-primary/10 shadow-2xl group-hover:shadow-neon group-hover:bg-background/85 transition-all duration-300"
+        className="p-8 flex flex-col"
       >
-        {/* Glow bloom */}
-        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-2xl blur-2xl -z-10`} />
+        {/* Glow bloom behind the poster */}
+        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-50 transition-opacity duration-700 rounded-2xl blur-2xl [transform:translateZ(-40px)]`} />
 
-        <div className="h-full border border-primary/10 rounded-2xl p-8 flex flex-col relative z-0 overflow-hidden bg-background/70 backdrop-blur-2xl group-hover:bg-background/85 transition-colors parchment-glass">
-
-          {/* Wanted Poster Header */}
-          <div className="flex items-start justify-between mb-4">
-            <div>
-              <div className="text-xs font-black tracking-[0.25em] text-primary/50 uppercase border-b border-primary/20 pb-1">
-                — Wanted —
-              </div>
-              {project.org && (
-                <div className="text-[10px] text-muted-foreground/60 font-mono mt-1.5">@ {project.org}</div>
-              )}
+        {/* Wanted Poster Header */}
+        <div className="flex items-start justify-between mb-4 depth-20">
+          <div>
+            <div className="text-xs font-black tracking-[0.25em] text-primary/50 uppercase border-b border-primary/20 pb-1">
+              — Wanted —
             </div>
-            <div className="text-right">
-              <div className="text-[10px] text-muted-foreground/60 font-mono">BOUNTY</div>
-              <div className="text-sm font-black text-primary font-mono">{project.bounty} Berry</div>
-            </div>
-          </div>
-
-          <div className="flex-1 space-y-5 flex flex-col justify-center">
-            <h3 className="text-3xl font-extrabold tracking-tight group-hover:text-primary transition-colors">{project.title}</h3>
-
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              {project.description}
-            </p>
-
-            <div className="flex flex-wrap gap-2 pt-2">
-              {project.techStack.map((tech: string) => (
-                <span key={tech} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-semibold border border-primary/20">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <div className="flex gap-6 mt-8 pt-6 border-t border-primary/10">
-            {project.live ? (
-              <Link href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors font-bold group/link">
-                <ExternalLink className="w-5 h-5 group-hover/link:rotate-12 transition-transform" />
-                Claim the Treasure
-              </Link>
-            ) : (
-              <span className="flex items-center gap-2 text-muted-foreground/50 text-sm font-semibold italic">
-                🔒 Classified — Private Seas
-              </span>
+            {project.org && (
+              <div className="text-[10px] text-muted-foreground/60 font-mono mt-1.5">@ {project.org}</div>
             )}
           </div>
+          <div className="text-right depth-40">
+            <div className="text-[10px] text-muted-foreground/60 font-mono">BOUNTY</div>
+            <div className="text-sm font-black text-primary font-mono">{project.bounty} Berry</div>
+          </div>
         </div>
-      </motion.div>
+
+        <div className="flex-1 space-y-5 flex flex-col justify-center preserve-3d">
+          <h3 className="text-3xl font-extrabold tracking-tight group-hover:text-primary transition-colors depth-60">{project.title}</h3>
+
+          <p className="text-muted-foreground leading-relaxed text-lg depth-20">
+            {project.description}
+          </p>
+
+          <div className="flex flex-wrap gap-2 pt-2 depth-40">
+            {project.techStack.map((tech: string) => (
+              <span key={tech} className="px-3 py-1 bg-primary/10 text-primary text-sm rounded-full font-semibold border border-primary/20">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="flex gap-6 mt-8 pt-6 border-t border-primary/10 depth-30">
+          {project.live ? (
+            <Link href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors font-bold group/link">
+              <ExternalLink className="w-5 h-5 group-hover/link:rotate-12 transition-transform" />
+              Claim the Treasure
+            </Link>
+          ) : (
+            <span className="flex items-center gap-2 text-muted-foreground/50 text-sm font-semibold italic">
+              🔒 Classified — Private Seas
+            </span>
+          )}
+        </div>
+      </TiltCard>
     </motion.div>
   );
 }

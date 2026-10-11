@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { TiltCard } from "@/components/ui/TiltCard";
 import { Code2, Database, Layout, Server } from "lucide-react";
 
 export function About() {
@@ -92,10 +93,15 @@ export function About() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true, margin: "-50px" }}
-                whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                className="parchment-glass p-6 rounded-2xl hover:border-primary/50 transition-colors group"
+                className="group"
               >
-                <div className="flex items-start justify-between mb-3">
+                <TiltCard
+                  maxTilt={14}
+                  wrapperClassName="h-full"
+                  surfaceClassName="parchment-glass group-hover:border-primary/50 transition-colors"
+                  className="p-6"
+                >
+                <div className="flex items-start justify-between mb-3 depth-40">
                   <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary transition-all duration-300 group-hover:text-primary-foreground">
                     <card.icon className="w-6 h-6" />
                   </div>
@@ -103,10 +109,11 @@ export function About() {
                     {card.label}
                   </span>
                 </div>
-                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">{card.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors depth-30">{card.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed depth-10">
                   {card.description}
                 </p>
+                </TiltCard>
               </motion.div>
             ))}
           </div>

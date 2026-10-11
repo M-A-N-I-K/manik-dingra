@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { TiltCard } from "@/components/ui/TiltCard";
 
 const contracts = [
   {
@@ -69,14 +70,17 @@ export function Freelance() {
               transition={{ duration: 0.6, delay: index * 0.15 }}
               className="group"
             >
-              <div className="parchment-glass rounded-2xl overflow-hidden border border-primary/10 hover:border-primary/30 transition-colors shadow-lg hover:shadow-neon">
+              <TiltCard
+                maxTilt={4}
+                surfaceClassName="parchment-glass border border-primary/10 group-hover:border-primary/30 transition-colors shadow-lg group-hover:shadow-neon"
+              >
 
                 {/* Gradient accent top bar */}
-                <div className={`h-px bg-gradient-to-r ${contract.gradient}`} />
+                <div className={`absolute inset-x-4 top-0 h-px bg-gradient-to-r ${contract.gradient}`} />
 
-                <div className="p-8">
+                <div className="p-8 preserve-3d">
                   {/* Header */}
-                  <div className="flex flex-wrap items-start justify-between gap-4 mb-6">
+                  <div className="flex flex-wrap items-start justify-between gap-4 mb-6 depth-40">
                     <div className="flex items-center gap-4">
                       <div className="hidden sm:flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 border border-primary/20 shrink-0 text-lg">
                         ⚓
@@ -99,7 +103,7 @@ export function Freelance() {
                   </div>
 
                   {/* Highlights */}
-                  <ul className="space-y-3 mb-6">
+                  <ul className="space-y-3 mb-6 depth-10">
                     {contract.highlights.map((point, i) => (
                       <li key={i} className="flex gap-3 text-muted-foreground/90 text-sm leading-relaxed">
                         <span className="text-primary mt-0.5 shrink-0">⚡</span>
@@ -109,7 +113,7 @@ export function Freelance() {
                   </ul>
 
                   {/* Tech stack */}
-                  <div className="flex flex-wrap gap-2 pt-4 border-t border-primary/10">
+                  <div className="flex flex-wrap gap-2 pt-4 border-t border-primary/10 depth-30">
                     {contract.techStack.map((tech) => (
                       <span key={tech} className="px-3 py-1 bg-primary/10 text-primary text-xs rounded-full font-semibold border border-primary/20">
                         {tech}
@@ -118,7 +122,7 @@ export function Freelance() {
                   </div>
                 </div>
 
-              </div>
+              </TiltCard>
             </motion.div>
           ))}
         </div>

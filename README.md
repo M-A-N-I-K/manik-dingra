@@ -7,6 +7,7 @@ A One Piece–themed personal portfolio built with Next.js, live at [manik-dingr
 - Next.js 16 (App Router) + React 19
 - TypeScript
 - Tailwind CSS 3 (shadcn-style HSL theme tokens, light "parchment" / dark "ocean" modes via `next-themes`)
+- Three.js via React Three Fiber + drei (3D ocean scene, devil fruits)
 - Framer Motion
 - Lenis smooth scroll
 - Resend (contact form email)
@@ -26,12 +27,15 @@ A One Piece–themed personal portfolio built with Next.js, live at [manik-dingr
 │   ├── footer.tsx
 │   ├── theme-provider.tsx
 │   ├── sections/              # Hero, About, Experience, Skills, Projects, Freelance, Contact
-│   └── ui/                    # CustomCursor, SeaParticles, OnePieceBackground
+│   ├── three/                 # WebGL scene: ocean, Going Merry, treasure, devil fruits (lazy-loaded)
+│   └── ui/                    # TiltCard, CustomCursor, and the 2D fallback (SeaParticles, OnePieceBackground)
 ├── lib/
 │   ├── lenis-scroll.tsx       # Smooth scroll setup
 │   └── utils.ts               # cn() helper
 └── public/                    # Favicons, OG image, web manifest
 ```
+
+3D is enabled on screens ≥768px with WebGL2 and no reduced-motion preference; everything else gets the flat 2D theme. All three.js code loads through `components/three/lazy.ts` so it is one deferred chunk.
 
 Section content (projects, experience, skills, freelance work) lives as arrays inside each component in `components/sections/`.
 

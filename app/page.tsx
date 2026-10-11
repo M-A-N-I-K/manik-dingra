@@ -6,18 +6,18 @@ import { Freelance } from "@/components/sections/Freelance";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { SeaParticles } from "@/components/ui/SeaParticles";
-import { OnePieceBackground } from "@/components/ui/OnePieceBackground";
+import { Scene3DProvider } from "@/components/three/Scene3DProvider";
+import { BackgroundLayer, ForegroundLayer } from "@/components/three/SceneLayers";
 import LenisScroll from "@/lib/lenis-scroll";
 
 export default function Page() {
   return (
-    <>
+    <Scene3DProvider>
       <CustomCursor />
-      <SeaParticles />
-      <OnePieceBackground />
+      {/* WebGL ocean scene on capable devices, flat SVG theme otherwise */}
+      <BackgroundLayer />
 
-      <main className="min-h-screen bg-background text-foreground font-sans relative">
+      <main className="min-h-screen text-foreground font-sans relative z-10">
         <LenisScroll />
         <Hero />
         <About />
@@ -27,6 +27,8 @@ export default function Page() {
         <Freelance />
         <Contact />
       </main>
-    </>
+
+      <ForegroundLayer />
+    </Scene3DProvider>
   );
 }

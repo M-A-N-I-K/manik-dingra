@@ -1,6 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { useState } from "react";
+import type { IconType } from "react-icons";
+import { useCan3D } from "@/components/three/Scene3DProvider";
 import {
   SiReact,
   SiNextdotjs,
@@ -23,6 +27,13 @@ import {
 } from "react-icons/si";
 import { FaAws } from "react-icons/fa";
 import { TbVector } from "react-icons/tb";
+
+const FruitView = dynamic(
+  () => import("@/components/three/lazy").then((m) => m.FruitView),
+  { ssr: false },
+);
+
+type Skill = { name: string; icon: IconType; color: string; fruit: string };
 
 export function Skills() {
   const skills = [
@@ -131,35 +142,7 @@ export function Skills() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-6">
           {skills.map((skill, index) => (
-            <motion.div
-              key={skill.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ delay: index * 0.05, duration: 0.3 }}
-              whileHover={{ scale: 1.05, y: -4 }}
-              className="group relative flex flex-col items-center justify-center p-7 parchment-glass rounded-2xl overflow-hidden cursor-none transition-all hover:border-primary/40 hover:shadow-neon"
-            >
-              {/* Hover color wash */}
-              <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] transition-opacity duration-500 rounded-2xl"
-                style={{ backgroundColor: skill.color }}
-              />
-
-              <skill.icon
-                className="w-10 h-10 mb-3 transition-all group-hover:scale-110 duration-300 group-hover:drop-shadow-lg"
-                style={{
-                  color:
-                    skill.color !== "#ffffff" ? skill.color : "currentColor",
-                }}
-              />
-              <span className="font-bold text-foreground relative z-10 text-center text-sm">
-                {skill.name}
-              </span>
-              <span className="text-[10px] text-primary/50 font-mono mt-1 relative z-10 opacity-0 group-hover:opacity-100 transition-opacity text-center">
-                {skill.fruit} no Mi
-              </span>
-            </motion.div>
+            <SkillCard key={skill.name} skill={skill} index={index} />
           ))}
         </div>
 
@@ -178,5 +161,54 @@ export function Skills() {
         </motion.div>
       </div>
     </section>
+  );
+}
+
+function SkillCard({ skill, index }: { skill: Skill; index: number }) {
+  const can3D = useCan3D();
+  const [hovered, setHovered] = useState(false);
+  const iconColor = skill.color !== "#ffffff" ? skill.color : "currentColor";
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.8 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ delay: index * 0.05, duration: 0.3 }}
+      whileHover={{ scale: 1.05, y: -4 }}
+      onHoverStart={() => setHovered(true)}
+      onHoverEnd={() => setHovered(false)}
+      className="group relative flex flex-col items-center justify-center p-7 parchment-glass rounded-2xl overflow-hidden cursor-none transition-all hover:border-primary/40 hover:shadow-neon"
+    >
+      {/* Hover color wash */}
+      <div
+        className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] transition-opacity duration-500 rounded-2xl"
+        style={{ backgroundColor: skill.color }}
+      />
+
+      {can3D ? (
+        <>
+          {/* Devil fruit, drawn by the shared WebGL overlay */}
+          <FruitView color={skill.color} hovered={hovered} className="w-20 h-20 -mt-3 mb-1" />
+          <span className="font-bold text-foreground relative z-10 text-center text-sm flex items-center gap-1.5">
+            <skill.icon className="w-4 h-4 shrink-0" style={{ color: iconColor }} />
+            {skill.name}
+          </span>
+        </>
+      ) : (
+        <>
+          <skill.icon
+            className="w-10 h-10 mb-3 transition-all group-hover:scale-110 duration-300 group-hover:drop-shadow-lg"
+            style={{ color: iconColor }}
+          />
+          <span className="font-bold text-foreground relative z-10 text-center text-sm">
+            {skill.name}
+          </span>
+        </>
+      )}
+      <span className="text-[10px] text-primary/50 font-mono mt-1 relative z-10 opacity-0 group-hover:opacity-100 transition-opacity text-center">
+        {skill.fruit} no Mi
+      </span>
+    </motion.div>
   );
 }
