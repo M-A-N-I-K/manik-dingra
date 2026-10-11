@@ -6,23 +6,20 @@ import Lenis from "lenis";
 export default function LenisScroll() {
     useEffect(() => {
         const lenis = new Lenis();
+        let frameId: number;
 
-        lenis.on("scroll", () => {
-            // console.log(e);
-        });
-
-        function ref(time: number) {
+        function raf(time: number) {
             lenis.raf(time);
-            requestAnimationFrame(ref);
+            frameId = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(ref);
+        frameId = requestAnimationFrame(raf);
 
         return () => {
+            cancelAnimationFrame(frameId);
             lenis.destroy();
-        }
+        };
     }, []);
 
     return null;
 }
-

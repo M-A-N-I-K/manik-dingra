@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useSyncExternalStore } from "react";
 import {
   motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
-} from "motion/react";
+} from "framer-motion";
 import Link from "next/link";
 import { Mail, FileText, Sun, Moon, X } from "lucide-react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
@@ -35,6 +35,8 @@ export const socialLinks = [
 const navItems = [
   { name: "Home", href: "#home", icon: "⚓", section: "home" },
   { name: "About", href: "#about", icon: "📜", section: "about" },
+  { name: "Voyage", href: "#experience", icon: "🧭", section: "experience" },
+  { name: "Skills", href: "#skills", icon: "🍇", section: "skills" },
   { name: "Projects", href: "#projects", icon: "💀", section: "projects" },
   { name: "Freelance", href: "#freelance", icon: "⚡", section: "freelance" },
   { name: "Contact", href: "#contact", icon: "🐌", section: "contact" },
@@ -44,7 +46,7 @@ const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const { theme, setTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (v) => {
@@ -114,7 +116,7 @@ const NavBar = () => {
           </Link>
 
           {/* ── Desktop Nav ── */}
-          <nav className="hidden md:flex items-center gap-1 bg-background/50 backdrop-blur-sm border border-primary/10 rounded-full px-2 py-1.5">
+          <nav className="hidden lg:flex items-center gap-1 bg-background/50 backdrop-blur-sm border border-primary/10 rounded-full px-2 py-1.5">
             {navItems.map((item) => {
               const isActive = activeSection === item.section;
               return (
@@ -149,7 +151,7 @@ const NavBar = () => {
           </nav>
 
           {/* ── Desktop Right: socials + theme ── */}
-          <div className="hidden md:flex items-center gap-3">
+          <div className="hidden lg:flex items-center gap-3">
             {socialLinks.map(({ icon: Icon, href, label }) => (
               <motion.a
                 key={label}
@@ -165,12 +167,12 @@ const NavBar = () => {
               </motion.a>
             ))}
             <div className="w-px h-4 bg-primary/20 mx-1" />
-            <ThemeBtn theme={theme} setTheme={setTheme} />
+            <ThemeBtn theme={resolvedTheme} setTheme={setTheme} />
           </div>
 
           {/* ── Mobile Right: theme + hamburger ── */}
-          <div className="flex md:hidden items-center gap-2">
-            <ThemeBtn theme={theme} setTheme={setTheme} />
+          <div className="flex lg:hidden items-center gap-2">
+            <ThemeBtn theme={resolvedTheme} setTheme={setTheme} />
             <motion.button
               whileTap={{ scale: 0.9 }}
               onClick={() => setIsOpen(true)}
@@ -221,6 +223,7 @@ const NavBar = () => {
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(false)}
                   className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary"
+                  aria-label="Close menu"
                 >
                   <X className="w-4 h-4" />
                 </motion.button>
@@ -317,15 +320,23 @@ function ThemeBtn({
   theme: string | undefined;
   setTheme: (t: string) => void;
 }) {
+  // resolvedTheme is unknown during SSR; render a neutral icon until mounted
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
+  const isDark = mounted && theme === "dark";
+
   return (
     <motion.button
-      onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       className="w-9 h-9 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary hover:bg-primary/20 transition-colors"
       aria-label="Toggle theme"
     >
-      {theme === "dark" ? (
+      {isDark ? (
         <Sun className="w-4 h-4" />
       ) : (
         <Moon className="w-4 h-4" />

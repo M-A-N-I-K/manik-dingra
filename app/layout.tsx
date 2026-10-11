@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "@/components/navbar";
@@ -84,16 +84,16 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
   category: "portfolio",
 };
 
-export const viewport = {
+export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  maximumScale: 1,
   themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#fff" },
-    { media: "(prefers-color-scheme: dark)", color: "#000" },
+    { media: "(prefers-color-scheme: light)", color: "#f9f7f1" },
+    { media: "(prefers-color-scheme: dark)", color: "#070e18" },
   ],
 };
 

@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion } from 'motion/react';
+import { motion } from 'framer-motion';
 import { socialLinks } from './navbar';
 
 const Footer = () => {
@@ -9,11 +9,7 @@ const Footer = () => {
 
     return (
         <motion.footer
-            className="relative border-t"
-            style={{
-                backgroundColor: 'var(--background)',
-                borderColor: 'var(--border)'
-            }}
+            className="relative border-t border-border bg-background"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -27,16 +23,7 @@ const Footer = () => {
                         transition={{ delay: 0.2 }}
                         className="mb-4 md:mb-0"
                     >
-                        <span
-                            className="text-xl font-semibold"
-                            style={{
-                                color: 'var(--foreground)',
-                                background: `linear-gradient(to right, var(--primary), var(--ring))`,
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                            }}
-                        >
+                        <span className="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary to-secondary">
                             Manik Dingra
                         </span>
                     </motion.div>
@@ -54,14 +41,8 @@ const Footer = () => {
                                 href={social.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className={`transition-colors relative group`}
-                                style={{ color: 'var(--muted-foreground)' }}
-                                onMouseEnter={(e) => {
-                                    e.currentTarget.style.color = 'var(--primary)';
-                                }}
-                                onMouseLeave={(e) => {
-                                    e.currentTarget.style.color = 'var(--muted-foreground)';
-                                }}
+                                aria-label={social.label}
+                                className="relative group text-muted-foreground hover:text-primary transition-colors"
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 initial={{ opacity: 0, y: -20 }}
@@ -70,14 +51,10 @@ const Footer = () => {
                             >
                                 <social.icon className="w-5 h-5" />
                                 <span
-                                    className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 
-                                        px-2 py-1 text-xs rounded-md
+                                    className="absolute -bottom-8 left-1/2 -translate-x-1/2
+                                        px-2 py-1 text-xs rounded-md bg-card text-card-foreground
                                         opacity-0 group-hover:opacity-100 transition-opacity
                                         whitespace-nowrap pointer-events-none"
-                                    style={{
-                                        backgroundColor: 'var(--card)',
-                                        color: 'var(--card-foreground)'
-                                    }}
                                 >
                                     {social.label}
                                 </span>
@@ -90,8 +67,7 @@ const Footer = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="text-sm"
-                        style={{ color: 'var(--muted-foreground)' }}
+                        className="text-sm text-muted-foreground"
                     >
                         ⚓ © {currentYear} Sailing the Grand Line
                     </motion.div>
@@ -99,10 +75,7 @@ const Footer = () => {
 
                 {/* Animated gradient line */}
                 <motion.div
-                    className="absolute top-0 left-0 right-0 h-px"
-                    style={{
-                        background: `linear-gradient(to right, var(--primary)/0, var(--primary)/50, var(--primary)/0)`
-                    }}
+                    className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-primary/0 via-primary/50 to-primary/0 bg-[length:200%_100%]"
                     animate={{
                         backgroundPosition: ['200% 0', '-200% 0'],
                     }}

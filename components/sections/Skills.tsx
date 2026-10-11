@@ -142,7 +142,7 @@ export function Skills() {
             >
               {/* Hover color wash */}
               <div
-                className="absolute inset-0 opacity-0 group-hover:opacity-8 transition-opacity duration-500 rounded-2xl"
+                className="absolute inset-0 opacity-0 group-hover:opacity-[0.08] transition-opacity duration-500 rounded-2xl"
                 style={{ backgroundColor: skill.color }}
               />
 

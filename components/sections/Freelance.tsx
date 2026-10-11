@@ -36,7 +36,7 @@ export function Freelance() {
   return (
     <section id="freelance" className="py-24 relative overflow-hidden">
       <div className="absolute inset-0 map-texture opacity-30 z-0" />
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/8 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-0 w-80 h-80 bg-accent/[0.08] blur-[120px] rounded-full pointer-events-none" />
 
       <div className="container px-6 mx-auto relative z-10">
         <motion.div

@@ -1,8 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Anchor, Download, Github, Linkedin, Mail } from "lucide-react";
+import { Anchor, Download } from "lucide-react";
 import Link from "next/link";
+import { socialLinks } from "@/components/navbar";
+
+const resumeHref = socialLinks.find((s) => s.label === "Resume")!.href;
+const heroSocials = socialLinks.filter((s) =>
+  ["GitHub", "LinkedIn", "Email"].includes(s.label),
+);
 
 export function Hero() {
   return (
@@ -26,7 +32,7 @@ export function Hero() {
             transition={{ duration: 0.8, ease: "easeOut" }}
             className="inline-block"
           >
-            <span className="px-5 py-2.5 rounded-full border border-primary/30 bg-primary/8 text-sm font-semibold text-primary mb-8 inline-flex items-center gap-2 backdrop-blur-md shadow-neon">
+            <span className="px-5 py-2.5 rounded-full border border-primary/30 bg-primary/[0.08] text-sm font-semibold text-primary mb-8 inline-flex items-center gap-2 backdrop-blur-md shadow-neon">
               <Anchor className="w-4 h-4" />
               よし、行くぞ! // Let&apos;s Set Sail!
             </span>
@@ -74,13 +80,14 @@ export function Hero() {
                 ☠ View My Bounty
               </span>
             </Link>
-            <Link
-              href="/resume.pdf"
+            <a
+              href={resumeHref}
               target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-4 border border-primary/20 bg-primary/5 backdrop-blur-md text-foreground rounded-full font-semibold transition-all hover:bg-primary/10 hover:border-primary/40 w-full sm:w-auto flex justify-center items-center gap-2 hover:shadow-lg"
             >
               Resume <Download className="w-5 h-5" />
-            </Link>
+            </a>
           </motion.div>
 
           {/* Social Links */}
@@ -90,19 +97,17 @@ export function Hero() {
             transition={{ duration: 1, delay: 1 }}
             className="flex items-center justify-center gap-6 pt-12"
           >
-            {[
-              { icon: Github, href: "https://github.com/manik-dingra" },
-              { icon: Linkedin, href: "https://linkedin.com/in/manik-dingra" },
-              { icon: Mail, href: "mailto:manikdhingra0582@gmail.com" },
-            ].map((social, i) => (
-              <Link
-                key={i}
+            {heroSocials.map((social) => (
+              <a
+                key={social.label}
                 href={social.href}
                 target="_blank"
+                rel="noopener noreferrer"
+                aria-label={social.label}
                 className="p-3 rounded-full border border-primary/10 bg-primary/5 backdrop-blur-md hover:border-primary/60 hover:text-primary hover:shadow-neon transition-all hover:-translate-y-1"
               >
                 <social.icon className="w-6 h-6" />
-              </Link>
+              </a>
             ))}
           </motion.div>
 

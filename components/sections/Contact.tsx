@@ -44,7 +44,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-32 relative overflow-hidden">
       {/* Ocean depth background */}
-      <div className="absolute inset-0 bg-primary/5 dark:bg-primary/8 z-0" />
+      <div className="absolute inset-0 bg-primary/5 dark:bg-primary/[0.08] z-0" />
       <div className="absolute right-0 top-0 w-1/3 h-full bg-gradient-to-l from-background to-transparent z-0" />
       <div className="absolute left-0 bottom-0 w-64 h-64 bg-primary/20 blur-[100px] rounded-full z-0 pointer-events-none" />
       <div className="absolute right-10 top-10 w-48 h-48 bg-secondary/15 blur-[80px] rounded-full z-0 pointer-events-none" />
@@ -125,6 +125,7 @@ export function Contact() {
                   <input
                     type="text"
                     name="name"
+                    maxLength={100}
                     value={form.name}
                     onChange={handleChange}
                     required
@@ -137,6 +138,7 @@ export function Contact() {
                   <input
                     type="email"
                     name="email"
+                    maxLength={254}
                     value={form.email}
                     onChange={handleChange}
                     required
@@ -151,6 +153,7 @@ export function Contact() {
                 <textarea
                   rows={4}
                   name="message"
+                  maxLength={5000}
                   value={form.message}
                   onChange={handleChange}
                   required

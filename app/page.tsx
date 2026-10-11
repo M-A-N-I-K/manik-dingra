@@ -6,7 +6,7 @@ import { Freelance } from "@/components/sections/Freelance";
 import { Experience } from "@/components/sections/Experience";
 import { Contact } from "@/components/sections/Contact";
 import { CustomCursor } from "@/components/ui/CustomCursor";
-import { SakuraPetals } from "@/components/ui/SakuraPetals";
+import { SeaParticles } from "@/components/ui/SeaParticles";
 import { OnePieceBackground } from "@/components/ui/OnePieceBackground";
 import LenisScroll from "@/lib/lenis-scroll";
 
@@ -14,7 +14,7 @@ export default function Page() {
   return (
     <>
       <CustomCursor />
-      <SakuraPetals />
+      <SeaParticles />
       <OnePieceBackground />
 
       <main className="min-h-screen bg-background text-foreground font-sans relative">

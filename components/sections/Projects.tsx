@@ -108,7 +108,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.6, delay: index * 0.2 }}
-      className="group relative h-full perspective-1000"
+      className="group relative h-full [perspective:1000px]"
     >
       <motion.div
         className="h-full rounded-2xl p-[1px] bg-gradient-to-br transition-all duration-300 shadow-2xl hover:shadow-neon"
@@ -156,7 +156,7 @@ function ProjectCard({ project, index }: { project: any, index: number }) {
 
           <div className="flex gap-6 mt-8 pt-6 border-t border-primary/10">
             {project.live ? (
-              <Link href={project.live} className="flex items-center gap-2 hover:text-primary transition-colors font-bold group/link">
+              <Link href={project.live} target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-primary transition-colors font-bold group/link">
                 <ExternalLink className="w-5 h-5 group-hover/link:rotate-12 transition-transform" />
                 Claim the Treasure
               </Link>
