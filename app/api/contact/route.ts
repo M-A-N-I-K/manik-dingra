@@ -1,8 +1,6 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-
 const LIMIT = 3;
 const WINDOW_MS = 15 * 60 * 1000;
 const MAX_TRACKED_IPS = 5000;
@@ -100,6 +98,17 @@ export async function POST(request: Request) {
     );
   }
 
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("Contact form: RESEND_API_KEY is not set");
+    return NextResponse.json(
+      { error: "Couldn't send your message. Please try again later." },
+      { status: 500 },
+    );
+  }
+
+  // Created per request so builds don't require the key at module load
+  const resend = new Resend(apiKey);
   const { error } = await resend.emails.send({
     from: "Contact Form <onboarding@resend.dev>",
     to: "manikdhingra0582@gmail.com",
